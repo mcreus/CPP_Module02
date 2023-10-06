@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:18:20 by mcreus            #+#    #+#             */
-/*   Updated: 2023/10/05 17:55:02 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/10/06 17:32:11 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,14 @@ Fixed::Fixed(Fixed const & b)
 
 Fixed::Fixed(const int d)
 {
-    std::cout << "Copy constructor called" << std::endl;
-    
+    std::cout << "Int constructor called" << std::endl;
+    this->_a = d << _nBits;
+}
+
+Fixed::Fixed(float const e)
+{
+    std::cout << "Float constructor called" << std::endl;
+    this->_a = roundf(e * (1 << _nBits));
 }
 
 Fixed::~Fixed()
@@ -42,8 +48,8 @@ Fixed::~Fixed()
 Fixed &Fixed::operator=( Fixed const & c)
 {
     std::cout << "Copy assigment operator called" << std::endl;
-    setRawBits(c.getRawBits());
-    return (*this);    
+    _a = c._a;
+    return (*this);   
 }
 
 int Fixed::getRawBits(void) const
@@ -57,7 +63,25 @@ void    Fixed::setRawBits(int const raw)
     this->_a = raw;
 }
 
-/*std::ofstream   &operator<<(std::ofstream &o, float const &f)
+float   Fixed::toFloat(void) const
 {
+    float   res;
     
-}*/
+    res = _a / (1 << _nBits);
+    return (res);
+}
+
+int Fixed::toInt(void) const
+{
+    int res2;
+    
+    res2 = _a >> _nBits;
+    return (res2);
+}
+
+std::ofstream   &operator<<(std::ofstream &o, Fixed const &f)
+{
+    o << f.toFloat();
+    
+    return (o);
+}
