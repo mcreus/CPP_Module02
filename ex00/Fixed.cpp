@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:04:02 by mcreus            #+#    #+#             */
-/*   Updated: 2023/10/05 17:05:44 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/10/09 16:55:17 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ Fixed::~Fixed()
 Fixed &Fixed::operator=( Fixed const & c)
 {
     std::cout << "Copy assigment operator called" << std::endl;
-    setRawBits(c.getRawBits());
+    this->_a = c._a;
     return (*this);    
 }
 

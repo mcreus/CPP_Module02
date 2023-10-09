@@ -27,6 +27,6 @@ class Fixed
 
 };
 
-std::ofstream	&operator<<(std::ofstream &o, float f);
+std::ostream	&operator<<(std::ostream &o, Fixed const &f);
 
 #endif

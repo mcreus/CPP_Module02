@@ -6,7 +6,7 @@
 /*   By: mcreus <mcreus@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:18:20 by mcreus            #+#    #+#             */
-/*   Updated: 2023/10/06 17:32:11 by mcreus           ###   ########.fr       */
+/*   Updated: 2023/10/09 12:04:23 by mcreus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ float   Fixed::toFloat(void) const
 {
     float   res;
     
-    res = _a / (1 << _nBits);
+    res = static_cast<float>(_a) / (1 << _nBits);
     return (res);
 }
 
@@ -79,7 +79,7 @@ int Fixed::toInt(void) const
     return (res2);
 }
 
-std::ofstream   &operator<<(std::ofstream &o, Fixed const &f)
+std::ostream   &operator<<(std::ostream &o, Fixed const &f)
 {
     o << f.toFloat();
     
